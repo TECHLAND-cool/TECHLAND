@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Entertainment - Techland</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      text-align: center;
+      background-color: #1e1e1e;
+      color: white;
+      padding: 1em;
+    }
+    .banner {
+      width: 100%;
+      height: auto;
+    }
+    .back-btn {
+      margin: 1em;
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5em;
+      padding: 2em;
+    }
+    .product {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 1em;
+      text-align: center;
+    }
+    .product img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      cursor: pointer;
+    }
+    .thumbnails img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin: 5px;
+      cursor: pointer;
+    }
+    button {
+      padding: 8px 16px;
+      margin-top: 10px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 1000;
+    }
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+    .lightbox-nav button {
+      background: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="images/entertainment-banner.jpg" alt="Entertainment Banner" class="banner" />
+
+  <header>
+    <h1>Entertainment</h1>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+  </header>
+
+  <main class="products">
+    <!-- Product 1 -->
+    <div class="product">
+      <img src="images/entertainment1-1.jpg" onclick="openLightbox('gallery1', 0)" alt="Entertainment Product 1">
+      <h2>Product 1</h2>
+      <p>$XX.XX</p>
+      <p>Description of product 1.</p>
+      <button>Buy</button>
+      <div class="thumbnails">
+        <img src="images/entertainment1-1.jpg" onclick="openLightbox('gallery1', 0)">
+        <img src="images/entertainment1-2.jpg" onclick="openLightbox('gallery1', 1)">
+        <img src="images/entertainment1-3.jpg" onclick="openLightbox('gallery1', 2)">
+      </div>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="product">
+      <img src="images/entertainment2-1.jpg" onclick="openLightbox('gallery2', 0)" alt="Entertainment Product 2">
+      <h2>Product 2</h2>
+      <p>$XX.XX</p>
+      <p>Description of product 2.</p>
+      <button>Buy</button>
+      <div class="thumbnails">
+        <img src="images/entertainment2-1.jpg" onclick="openLightbox('gallery2', 0)">
+        <img src="images/entertainment2-2.jpg" onclick="openLightbox('gallery2', 1)">
+        <img src="images/entertainment2-3.jpg" onclick="openLightbox('gallery2', 2)">
+      </div>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="product">
+      <img src="images/entertainment3-1.jpg" onclick="openLightbox('gallery3', 0)" alt="Entertainment Product 3">
+      <h2>Product 3</h2>
+      <p>$XX.XX</p>
+      <p>Description of product 3.</p>
+      <button>Buy</button>
+      <div class="thumbnails">
+        <img src="images/entertainment3-1.jpg" onclick="openLightbox('gallery3', 0)">
+        <img src="images/entertainment3-2.jpg" onclick="openLightbox('gallery3', 1)">
+        <img src="images/entertainment3-3.jpg" onclick="openLightbox('gallery3', 2)">
+      </div>
+    </div>
+
+    <!-- Product 4 -->
+    <div class="product">
+      <img src="images/entertainment4-1.jpg" onclick="openLightbox('gallery4', 0)" alt="Entertainment Product 4">
+      <h2>Product 4</h2>
+      <p>$XX.XX</p>
+      <p>Description of product 4.</p>
+      <button>Buy</button>
+      <div class="thumbnails">
+        <img src="images/entertainment4-1.jpg" onclick="openLightbox('gallery4', 0)">
+        <img src="images/entertainment4-2.jpg" onclick="openLightbox('gallery4', 1)">
+        <img src="images/entertainment4-3.jpg" onclick="openLightbox('gallery4', 2)">
+      </div>
+    </div>
+  </main>
+
+  <!-- Lightboxes -->
+  <div class="lightbox" id="gallery1-lightbox">
+    <span class="close" onclick="closeLightbox('gallery1')">&times;</span>
+    <img class="lightbox-img" id="gallery1-lightbox-img" src="">
+    <div class="lightbox-nav">
+      <button onclick="changeImage('gallery1', -1)">Previous</button>
+      <button onclick="changeImage('gallery1', 1)">Next</button>
+    </div>
+  </div>
+
+  <div class="lightbox" id="gallery2-lightbox">
+    <span class="close" onclick="closeLightbox('gallery2')">&times;</span>
+    <img class="lightbox-img" id="gallery2-lightbox-img" src="">
+    <div class="lightbox-nav">
+      <button onclick="changeImage('gallery2', -1)">Previous</button>
+      <button onclick="changeImage('gallery2', 1)">Next</button>
+    </div>
+  </div>
+
+  <div class="lightbox" id="gallery3-lightbox">
+    <span class="close" onclick="closeLightbox('gallery3')">&times;</span>
+    <img class="lightbox-img" id="gallery3-lightbox-img" src="">
+    <div class="lightbox-nav">
+      <button onclick="changeImage('gallery3', -1)">Previous</button>
+      <button onclick="changeImage('gallery3', 1)">Next</button>
+    </div>
+  </div>
+
+  <div class="lightbox" id="gallery4-lightbox">
+    <span class="close" onclick="closeLightbox('gallery4')">&times;</span>
+    <img class="lightbox-img" id="gallery4-lightbox-img" src="">
+    <div class="lightbox-nav">
+      <button onclick="changeImage('gallery4', -1)">Previous</button>
+      <button onclick="changeImage('gallery4', 1)">Next</button>
+    </div>
+  </div>
+
+  <!-- Lightbox Script -->
+  <script>
+    const galleries = {
+      gallery1: ["images/entertainment1-1.jpg", "images/entertainment1-2.jpg", "images/entertainment1-3.jpg"],
+      gallery2: ["images/entertainment2-1.jpg", "images/entertainment2-2.jpg", "images/entertainment2-3.jpg"],
+      gallery3: ["images/entertainment3-1.jpg", "images/entertainment3-2.jpg", "images/entertainment3-3.jpg"],
+      gallery4: ["images/entertainment4-1.jpg", "images/entertainment4-2.jpg", "images/entertainment4-3.jpg"]
+    };
+
+    let currentIndex = {};
+
+    function openLightbox(galleryId, index) {
+      currentIndex[galleryId] = index;
+      document.getElementById(`${galleryId}-lightbox-img`).src = galleries[galleryId][index];
+      document.getElementById(`${galleryId}-lightbox`).style.display = "flex";
+    }
+
+    function closeLightbox(galleryId) {
+      document.getElementById(`${galleryId}-lightbox`).style.display = "none";
+    }
+
+    function changeImage(galleryId, change) {
+      const total = galleries[galleryId].length;
+      currentIndex[galleryId] = (currentIndex[galleryId] + change + total) % total;
+      document.getElementById(`${galleryId}-lightbox-img`).src = galleries[galleryId][currentIndex[galleryId]];
+    }
+  </script>
+
+</body>
+</html>
